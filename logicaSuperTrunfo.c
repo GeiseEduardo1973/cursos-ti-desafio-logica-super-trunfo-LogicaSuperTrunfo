@@ -144,43 +144,43 @@ int main() {
     // se carta 01 = 1 resultado é carta 01 venceu
     // se carta 01 = 0 resultado é carta 02 venceu
 
-    if("Populacao1 > Populacao2 \n"); { 
+    if(Populacao1 > Populacao2 \n) { 
         printf("Carta 01 Venceu!\n");
     }else{
         printf("Carta 02 Venceu!\n"); }
 
 
-    if("Areakm21 > Areakm22\n");{ 
+    if(Areakm21 > Areakm22\n) { 
         printf("Carta 01 Venceu!\n"); 
     }else{
         printf("Carta 02 Venceu!\n"); }
     
 
-    if("PIB1 > PIB2\n"); {
+    if(PIB1 > PIB2\n) {
         printf("Carta 01 Venceu!\n");
     }else{ 
         printf("Carta 02 Venceu!\n"); }
     
 
-    if("PontosTuristicos1 > PontosTuristicos2\n");{ 
+    if(PontosTuristicos1 > PontosTuristicos2\n) { 
         printf("Carta 01 Venceu!");
     }else{
         printf("Carta 02 Venceu!"); }   
     
 
-    if("DensidadePopulaciona1 < DensidadePopulacional2\n");{
+    if(DensidadePopulaciona1 < DensidadePopulacional2\n) {
         printf("Carta 01 Venceu!");
     }else{
         printf("Carta 02 Venceu!"); }   
     
 
-    if("PIBPercapta1 > PIBPercapta2\n"); {
+    if(PIBPercapta1 > PIBPercapta2\n) {
         printf("Carta 01 Venceu!");
     }else{
         printf("Carta 02 Venceu!"); } 
     
 
-    if("SuperPoder1 > SuperPoder2\n"); {
+    if(SuperPoder1 > SuperPoder2\n) {
         printf("Carta 01 Venceu!");
     }else{
         printf("Carta 02 Venceu!"); }
