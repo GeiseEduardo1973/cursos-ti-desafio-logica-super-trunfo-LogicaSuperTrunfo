@@ -16,17 +16,12 @@ int main() {
     // Desafio Super Trunfo - Logica
     // Nivel: Aventureiro
     
-    int gerarValorAleatorio() {
-    srand(time(0)); // Define a semente para o gerador de números aleatórios
-    return rand() % 7 + 1; // Gera um número entre 1 e 7
-}
-    int escolhaJogador, escolhaComputador;
-
-    escolhaComputador = gerarValorAleatorio(); // Chama a função para gerar o número
-
-    printf("O computador escolheu: %d\n", escolhaComputador);
-
-            
+    int escolhaJogador,escolhaJogador1, escolhaJogador2, escolhaComputador1, escolhaComputador2;
+    int atributoJogador[7], atributoComputador[7]; // Valores fictícios para os atributos
+    int i;
+    int soma1, soma2;
+ 
+               
     //Variaveis Carta 01
     char Estado1[30];
     char Codigo1[3];
@@ -138,356 +133,166 @@ int main() {
     printf ("6. Densidade Demografica\n");
     printf ("7. Super Poder\n");
     
-     // inicializa o gerador de numeros aleatorios
+   // Inicializando os valores fictícios para atributos das cartas
     srand(time(0));
-        
+    for (i = 0; i < 7; i++) {
+        atributoJogador[i] = rand() % 100 + 1; // Valores aleatórios entre 1 e 100
+        atributoComputador[i] = rand() % 100 + 1;
+    }
         
     //Loop do jogo
-     // Loop do jogo
-    do {
-        // Turno do jogador
-        printf("Escolha uma característica (1 a 7 ou 0 para sair): ");
-        scanf("%d", &escolhaJogador);
-
-        if (escolhaJogador == 0) {
-            printf("Encerrando o jogo...\n");
-            break; // Sai do loop se o jogador escolher 0
+     do {
+        // Escolha do jogador
+        printf("\nJogador, escolha o primeiro atributo (1 a 7): ");
+        scanf("%d", &escolhaJogador1);
+        if (escolhaJogador1 > 7){
+        printf("Opçao inválida, tente novamente!"); 
         }
+        printf("Escolha o segundo atributo (diferente do primeiro): ");
+        do {
+            scanf("%d", &escolhaJogador2);
+            if (escolhaJogador2 == escolhaJogador1) {
+                printf("Você já escolheu esse atributo. Escolha outro: ");
+            }
+            
+        } while (escolhaJogador2 == escolhaJogador1);
+        
+    // Exibindo os valores escolhidos
+    printf("Jogador escolheu os atributos %d e %d\n", escolhaJogador1, escolhaJogador2);
+    printf("Atributo %d do jogador: %d | Computador: %d\n", escolhaJogador1, atributoJogador[escolhaJogador1 - 1], atributoComputador[escolhaJogador1 - 1]);
+    printf("Atributo %d do jogador: %d | Computador: %d\n", escolhaJogador2, atributoJogador[escolhaJogador2 - 1], atributoComputador[escolhaJogador2 - 1]);
 
-        if (escolhaJogador >= 1 && escolhaJogador <= 7) {
-            printf("Jogador escolheu a característica %d\n", escolhaJogador);
 
    
     // Comparar as cartas
     // Desenvolva a logica de comparacao entre duas cartas.
+    //Jogador    
+     if (escolhaJogador2 == 6) {     
+    // Atributo 6: vence quem tiver o menor valor    
+    if (atributoJogador[escolhaJogador1 - 1] < atributoComputador[escolhaJogador1 - 1]) {
+        printf("Jogador venceu no atributo %d (Densidade Demográfica)!\n", escolhaJogador1);
+    } else if (atributoJogador[escolhaJogador1 - 1] > atributoComputador[escolhaJogador1 - 1]) {
+        printf("Computador venceu no atributo %d (Densidade Demográfica)!\n", escolhaJogador1);
+    } else {
+        printf("Empate no atributo %d (Densidade Demográfica)!\n", escolhaJogador1);
+    } 
+}
+    // Para os outros atributos: vence quem tiver o maior valor
+    if (atributoJogador[escolhaJogador1 - 1] > atributoComputador[escolhaJogador1 - 1]) {
+        printf("Jogador venceu no atributo %d!\n", escolhaJogador1);
+    } else if (atributoJogador[escolhaJogador1 - 1] < atributoComputador[escolhaJogador1 - 1]) {
+        printf("Computador venceu no atributo %d!\n", escolhaJogador1);
+    } else {
+        printf("Empate no atributo %d!\n", escolhaJogador1);
+    }
+   
+    if (escolhaJogador2 == 6) {
+    // Atributo 6: vence quem tiver o menor valor
+    if (atributoJogador[escolhaJogador2 - 1] < atributoComputador[escolhaJogador2 - 1]) {
+        printf("Jogador venceu no atributo %d (Densidade Demográfica)!\n", escolhaJogador2);
+    } else if (atributoJogador[escolhaJogador2 - 1] > atributoComputador[escolhaJogador2 - 1]) {
+        printf("Computador venceu no atributo %d (Densidade Demográfica)!\n", escolhaJogador2);
+    } else {
+        printf("Empate no atributo %d (Densidade Demográfica)!\n", escolhaJogador2);
+    }  
+}
+    // Para os outros atributos: vence quem tiver o maior valor
+    if (atributoJogador[escolhaJogador2 - 1] > atributoComputador[escolhaJogador2 - 1]) {
+        printf("Jogador venceu no atributo %d!\n", escolhaJogador2);
+    } else if (atributoJogador[escolhaJogador2 - 1] < atributoComputador[escolhaJogador2 - 1]) {
+        printf("Computador venceu no atributo %d!\n", escolhaJogador2);
+    } else {
+        printf("Empate no atributo %d!\n", escolhaJogador2);
+    }
+
        // Escolha aleatória do computador
-            escolhaComputador = rand() % 7 + 1; // Valor entre 1 e 7
-            printf("Computador escolheu a característica %d\n", escolhaComputador);
+           escolhaComputador1 = rand() % 7 + 1;
+        do {
+            escolhaComputador2 = rand() % 7 + 1;
+        } while (escolhaComputador2 == escolhaComputador1);
 
-            // Estrutura de decisão para comparar jogador e computador
-            switch (escolhaJogador) {
-            case 1:
-                printf("Jogador: Populacao\n");
-                printf("Computador: Populacao\n");
-                break;
-            case 2:
-                printf("Jogador: Area\n");
-                printf("Computador: Area\n");
-                break;
-            case 3:
-                printf("Jogador: PIB\n");
-                printf("Computador: PIB\n");
-                break;
-            case 4:
-                printf("Jogador: Numero de Pontos Turisticos\n");
-                printf("Computador: Numero de Pontos Turisticos\n");
-                break;
-            case 5:
-                printf("Jogador: PIB Percapta\n");
-                printf("Computador: PIB Percapta\n");
-                break;
-            case 6:
-                printf("Jogador: Densidade Demografica\n");
-                printf("Computador: Densidade Demografica\n");
-                break;
-            case 7:
-                printf("Jogador: Super Poder\n");
-                printf("Computador: Super Poder\n");
-                break;
-            default:
-                printf("Opcao Invalida!\n");
-                break;
-            }
-        } else {
-            printf("Escolha inválida! Por favor, escolha um número entre 1 e 7 ou 0 para sair.\n");
-        }
+        printf("\nAgora é a vez do computador!\n");
+        printf("Computador escolheu os atributos %d e %d\n", escolhaComputador1, escolhaComputador2);
+        printf("Atributo %d do computador: %d | Jogador: %d\n", escolhaComputador1,
+               atributoComputador[escolhaComputador1 - 1], atributoJogador[escolhaComputador1 - 1]);
+        printf("Atributo %d do computador: %d | Jogador: %d\n", escolhaComputador2,
+               atributoComputador[escolhaComputador2 - 1], atributoJogador[escolhaComputador2 - 1]);
 
+    // Comparação dos valores escolhidos pelo computador
+    printf("\nResultados:\n");
+      if (escolhaJogador2 == 6) {   
+    // Atributo 6: vence quem tiver o menor valor
+    if (atributoComputador[escolhaComputador1 - 1] < atributoJogador[escolhaComputador1 - 1]) {
+        printf("Computador venceu no atributo %d (Densidade Demográfica)!\n", escolhaComputador1);
+    } else if (atributoComputador[escolhaComputador1 - 1] > atributoJogador[escolhaComputador1 - 1]) {
+        printf("Jogador venceu no atributo %d (Densidade Demográfica)!\n", escolhaComputador1);
+    } else {
+        printf("Empate no atributo %d (Densidade Demográfica)!\n", escolhaComputador1);
+    }
+}     
+    // Para os outros atributos: vence quem tiver o maior valor
+    if (atributoComputador[escolhaComputador1 - 1] > atributoJogador[escolhaComputador1 - 1]) {
+        printf("Computador venceu no atributo %d!\n", escolhaComputador1);
+    } else if (atributoComputador[escolhaComputador1 - 1] < atributoJogador[escolhaComputador1 - 1]) {
+        printf("Jogador venceu no atributo %d!\n", escolhaComputador1);
+    } else {
+        printf("Empate no atributo %d!\n", escolhaComputador1);
+    }    
+    if (escolhaJogador2 == 6) {
+    // Atributo 6: vence quem tiver o menor valor
+    if (atributoComputador[escolhaComputador2 - 1] < atributoJogador[escolhaComputador2 - 1]) {
+        printf("Computador venceu no atributo %d (Densidade Demográfica)!\n", escolhaComputador2);
+    } else if (atributoComputador[escolhaComputador2 - 1] > atributoJogador[escolhaComputador2 - 1]) {
+        printf("Jogador venceu no atributo %d (Densidade Demográfica)!\n", escolhaComputador2);
+    } else {
+        printf("Empate no atributo %d (Densidade Demográfica)!\n", escolhaComputador2);
+    }
+} 
+    // Para os outros atributos: vence quem tiver o maior valor
+    if (atributoComputador[escolhaComputador2 - 1] > atributoJogador[escolhaComputador2 - 1]) {
+        printf("Computadorr venceu no atributo %d!\n", escolhaComputador2);
+    } else if (atributoJogador[escolhaComputador2 - 1] < atributoJogador[escolhaComputador2 - 1]) {
+        printf("Jogador venceu no atributo %d!\n", escolhaComputador2);
+    } else {
+        printf("Empate no atributo %d!\n", escolhaComputador2);
+    } 
+        if (escolhaJogador1 > 7){ 
+        printf("Escolha inválida! Por favor, escolha um número entre 1 e 7 ou 0 para sair.\n");
     } while (escolhaJogador != 0);
-                    
+    
+    //Soma dos atributos 
+    soma1 = atributoJogador[escolhaJogador1 - 1]  + atributoJogador[escolhaJogador2 - 1];
+    soma2 = atributoComputador[escolhaComputador1 - 1] + atributoComputador[escolhaComputador2 - 1];
+    
         
-    // Exibicao dos Resultados:
+    // Exibicao dos Resultados Finais:
     // se carta 01 = 1 resultado - carta 01 venceu
     // se carta 01 = 0 resultado - carta 02 venceu
 
-    if(Populacao1 > Populacao2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao2);  
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (Populacao1 < Populacao2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi a População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao2);  
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if(Populacao1 == Populacao2){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a População\n");
-        printf ("A populacao da Cidade é: %lu\n",Populacao2); 
-        printf ("Houve um empate!\n");
-    }
-        
-       if(AreaKm21 > AreaKm22) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: AreaKm2\n");
-        printf ("A Area em Km2 da Cidade é: %f\n",AreaKm21);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a AreaKm2\n");
-        printf ("A Area em km2 da Cidade é: %f\n",AreaKm22);  
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (AreaKm21 < AreaKm22) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: AreaKm2\n");
-        printf ("A Area em Km2 da Cidade é: %f\n",AreaKm21);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a AreaKm2\n");
-        printf ("A Area em km2 da Cidade é: %f\n",AreaKm22);   
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if (AreaKm21 == AreaKm22){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi a AreaKm2\n");
-        printf ("A Area em km2 da Cidade é: %f\n",AreaKm21); 
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a AreaKm2\n");
-        printf ("A Area em km2 da Cidade é: %f\n",AreaKm22); 
-        printf ("Houve um empate!\n");
-    }
-        
-       if(PIB1 > PIB2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: PIB\n");
-        printf ("O PIB da Cidade é: %f\n",PIB1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a PIB\n");
-        printf ("O PIB da Cidade é: %f\n",PIB2);  
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (PIB1 < PIB2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: PIB\n");
-        printf ("O PIB da Cidade é: %f\n",PIB1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a AreaKm2\n");
-        printf ("O PIB da Cidade é: %f\n",PIB2);   
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if (PIB1 == PIB2){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi a PIB\n");
-        printf ("O PIB da Cidade é: %f\n",PIB1); 
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi a PIB\n");
-        printf ("O PIB da Cidade é: %f\n",PIB2); 
-        printf ("Houve um empate!\n");
-    }
- 
-    if(PontosTuristicos1 > PontosTuristicos2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-        printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-        printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos2);
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (PontosTuristicos1 > PontosTuristicos2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-        printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-       printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos2);
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if (PontosTuristicos1 == PontosTuristicos2){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-        printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Pontos Turisticos\n");
-        printf ("O numero de Pontos Turisticos da Cidade é: %d\n",PontosTuristicos2);
-        printf ("Houve um empate!\n");
-    }
+        // Exibicao dos Resultados Finais:
+    // se carta 01 = 1 resultado - carta 01 venceu
+    // se carta 01 = 0 resultado - carta 02 venceu
 
-    if(DensidadePopulacional1 < DensidadePopulacional2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("A Densidade Populacional da Cidade é: %f\n",DensidadePopulacional1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("A Densidade Populacional da Cidade é: %f\n",DensidadePopulacional2);
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (DensidadePopulacional1 < DensidadePopulacional2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf("A Densidade Populacional da Cidade é: %f\n", DensidadePopulacional1);
-        printf("Estado2: %s\n", Estado2);
-        printf("Codigo2: %s\n", Codigo2);
-        printf("Cidade2: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("A Densidade Populacional da Cidade é: %f\n",DensidadePopulacional2);
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if (DensidadePopulacional1 == DensidadePopulacional2){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("A Densidade Populacional da Cidade é: %f\n",DensidadePopulacional1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("A Densidade Populacional da Cidade é: %f\n",DensidadePopulacional2);
-        printf ("Houve um empate!\n");
-        }       
-        
-    if(PibPercapta1 > PibPercapta2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Pib Percapta\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",PibPercapta1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Densidade Populacional\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",DensidadePopulacional2);
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (PibPercapta1 < PibPercapta2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: PIB Percapta\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",PibPercapta1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: PIB Percapta\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",PibPercapta2);
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    }else if (PibPercapta1 == PibPercapta2){
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: PIB Percapta\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",PibPercapta1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: PIB Percapta\n");
-        printf ("O Pib Percapta da Cidade é: %f\n",PibPercapta2);
-        printf ("Houve um empate!\n");      
-    }        
+    printf("\nResultados finais:\n");
+    printf("%-20s %-20s %-20s\n", "Atributo", "Jogador (Cidade1)", "Computador (Cidade2)");
+    printf("------------------------------------------------------------\n");
+    printf("%-20s %-20d %-20d\n", "Populacao", atributoJogador[0], atributoComputador[0]);
+    printf("%-20s %-20.2d %-20.2d\n", "Area", atributoJogador[1], atributoComputador[1]);
+    printf("%-20s %-20.2d %-20.2d\n", "PIB", atributoJogador[2], atributoComputador[2]);
+    printf("%-20s %-20d %-20d\n", "Pontos Turisticos", atributoJogador[3], atributoComputador[3]);
+    printf("%-20s %-20.2d %-20.2d\n", "PIB Percapta", atributoJogador[4], atributoComputador[4]);
+    printf("%-20s %-20.2d %-20.2d\n", "Densidade Demografica", atributoJogador[5], atributoComputador[5]);
+    printf("%-20s %-20.2d %-20.2d\n", "Super Poder", atributoJogador[6], atributoComputador[6]);
+    printf("O resultado da soma do Jogador é: %d\n", soma1);
+    printf("O resultado da soma do Computador é: %d\n", soma2);
 
-    if(SuperPoder1 > SuperPoder2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf ("O Super Poder da Cidade é: %f\n",SuperPoder1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf ("O Super Poder da Cidade é: %f\n",SuperPoder2);
-        printf ("Jogador Venceu!\n");
-        printf ("turno do computador");
-    }else if (SuperPoder1 < SuperPoder2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf ("O Super Poder da Cidade é: %f\n",SuperPoder1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf ("O Super Poder da Cidade é: %f\n",SuperPoder2);
-        printf("Computador Venceu!\n"); 
-        printf ("turno do jogador"); 
-    } else if (SuperPoder1 == SuperPoder2) {
-        printf("Estado: %s\n", Estado1);                         
-        printf("Codigo: %s\n", Codigo1);
-        printf("Cidade: %s\n", Cidade1);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf("O Super Poder da Cidade é: %f\n", SuperPoder1);
-        printf("Estado: %s\n", Estado2);
-        printf("Codigo: %s\n", Codigo2);
-        printf("Cidade: %s\n", Cidade2);
-        printf("A caracteristica escolhida foi: Super Poder\n");
-        printf("O Super Poder da Cidade é: %f\n", SuperPoder2);
-        printf("Houve um empate!\n");
+    if (soma1 > soma2) {
+    printf("Jogador Venceu o Jogo!\n");
+    } else {
+    printf("Computador Venceu o Jogo!\n");
     }
     
-     return 0;
+    return 0;
+    }
+
 }
