@@ -14,7 +14,7 @@ void remove_newline(char *str) {
 int main() {
 
     // Desafio Super Trunfo - Logica
-    // Nivel: Aventureiro
+    // Nivel: Mestre
     
     int escolhaJogador,escolhaJogador1, escolhaJogador2, escolhaComputador1, escolhaComputador2;
     int atributoJogador[7], atributoComputador[7]; // Valores fictícios para os atributos
